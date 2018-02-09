@@ -17,6 +17,24 @@ Vue.filter('number_format', function (value) {
     return new Intl.NumberFormat().format(value);
 });
 
+Vue.filter('currency', function (value) {
+    if (!value) return value;
+
+    const currencies = store().state.currencies;
+    const selectedCurrency = store().state.selectedCurrency;
+    const sign = currencies[selectedCurrency].sign;
+
+    /*{
+        'USD': '$',
+        'EUR': '€',
+        'RUB': '₽',
+        'BTC': 'BTC',
+        'ETH': 'ETH',
+    };
+*/
+    return ['RUB', 'BTC', 'ETH'].includes(selectedCurrency) ? `${value} ${sign}` : `${sign} ${value}`;
+});
+
 /* eslint-disable no-new */
 new Vue({
     el: '#app',

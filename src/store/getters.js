@@ -1,6 +1,23 @@
 export default {
-    allCoins(state) {
-        return state.coins.items
+    coins(state) {
+        return state.coins.items;
+    },
+    coinsToShow(state) {
+        const coins = state.coins.items.slice(0, state.coins.pagination.perPage);
+
+        return coins.map((coin) => {
+            return {
+                id: coin.id,
+                rank: coin.rank,
+                name: coin.name,
+                symbol: coin.symbol,
+                price: coin[`price_${state.selectedCurrency.toLowerCase()}`],
+                market_cap: coin[`market_cap_${state.selectedCurrency.toLowerCase()}`],
+                percent_change_1h: coin.percent_change_1h,
+                percent_change_24h: coin.percent_change_24h,
+                percent_change_7d: coin.percent_change_7d,
+            }
+        });
     },
     coinsCount(state) {
         return state.coins.items.length
@@ -23,7 +40,10 @@ export default {
     coin(state) {
         return state.coin
     },
-    currency(state) {
-        return state.currency
+    currencies(state) {
+        return state.currencies
+    },
+    selectedCurrency(state) {
+        return state.selectedCurrency
     },
 }

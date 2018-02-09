@@ -1,15 +1,7 @@
 <template>
     <nav class="level">
         <div class="level-left">
-            <div class="select">
-                <label>
-                    <select>
-                        <option>USD</option>
-                        <option>EUR</option>
-                        <option>RUB</option>
-                    </select>
-                </label>
-            </div>
+            <currency-selector></currency-selector>
         </div>
         <div class="level-right">
             <div class="control">
@@ -27,13 +19,11 @@
 </template>
 
 <script>
+    import CurrencySelector from '@/components/CurrencySelector';
+
     export default {
-        data() {
-            return {
-                currencies: [
-                    "AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "ZAR"
-                ]
-            }
-        }
+        components: {
+            CurrencySelector
+        },
     }
 </script>

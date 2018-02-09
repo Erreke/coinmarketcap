@@ -3,10 +3,8 @@
         <div class="container">
 
             <div class="navbar-brand">
-                <router-link class="navbar-item" :to="{ name: 'MainPage' }">
-                    <span class="icon is-large">
-                        <i class="fab fa-btc fa-lg"></i>
-                    </span>
+                <router-link class="navbar-item" :to="{ name: 'MainPage' }" exact>
+                    <strong>COINMARKETCAP</strong>
                 </router-link>
 
                 <button class="button navbar-burger">
@@ -17,46 +15,37 @@
             </div>
 
             <div class="navbar-menu">
-                <router-link class="navbar-item" :to="{ name: 'MainPage' }">Convertor</router-link>
-                <router-link class="navbar-item" :to="{ name: 'MainPage' }">FAQ</router-link>
-                <router-link class="navbar-item" :to="{ name: 'TodoPage' }">TODO</router-link>
-
-                <!--<div class="navbar-start">
-                    <div class="navbar-item has-dropdown">
-                        <a class="navbar-link">Docs</a>
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item">Overview</a>
-                        </div>
-                    </div>
-                </div>-->
-
                 <div class="navbar-end">
 
-
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link" href="#">
-                            EN
+                    <p class="navbar-item">
+                        <a class="button is-info" href="https://github.com/Erreke/coinmarketcap">
+                          <span class="icon">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                          </span>
+                            <span>Github</span>
                         </a>
-                        <div class="navbar-dropdown is-boxed">
-                            <a class="navbar-item" href="#">RU</a>
-                            <a class="navbar-item" href="#">ES</a>
-                        </div>
-                    </div>
+                    </p>
 
 
-                    <div class="navbar-item">
-                        <div class="field is-grouped">
-                            <div class="control">
-                                <div class="field">
-                                    <input id="switchNightMode" type="checkbox" class="switch is-rounded is-large is-info">
-                                    <label for="switchNightMode"></label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <language-selector></language-selector>
+
+                    <night-mode-switcher></night-mode-switcher>
                 </div>
             </div>
 
         </div>
     </nav>
 </template>
+
+<script>
+    import LanguageSelector from '@/components/LanguageSelector';
+    import NightModeSwitcher from '@/components/NightModeSwitcher';
+
+    export default {
+        name: 'header',
+        components: {
+            LanguageSelector,
+            NightModeSwitcher,
+        },
+    }
+</script>

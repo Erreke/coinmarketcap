@@ -5,13 +5,13 @@
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading">Market Cap:</p>
-                        <p class="title">{{ total_market_cap_usd | number_format }}</p>
+                        <p class="title">{{ total_market_cap | number_format | currency}}</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading">24h Vol:</p>
-                        <p class="title">{{ total_24h_volume_usd | number_format }}</p>
+                        <p class="title">{{ total_24h_volume | number_format | currency }}</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex';
     import progress from '@/components/Progress';
 
     export default {
@@ -47,14 +48,17 @@
             'app-progress': progress,
         },
         computed: {
+            ...mapGetters([
+                'selectedCurrency',
+            ]),
             isDataRecieved() {
                 return !!this.$store.state.global;
             },
-            total_market_cap_usd() {
-                return this.$store.state.global.total_market_cap_usd
+            total_market_cap() {
+                return this.$store.state.global[`total_market_cap_${this.selectedCurrency.toLowerCase()}`]
             },
-            total_24h_volume_usd() {
-                return this.$store.state.global.total_24h_volume_usd
+            total_24h_volume() {
+                return this.$store.state.global[`total_24h_volume_${this.selectedCurrency.toLowerCase()}`]
             },
             bitcoin_percentage_of_market_cap() {
                 return this.$store.state.global.bitcoin_percentage_of_market_cap

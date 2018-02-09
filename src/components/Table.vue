@@ -2,19 +2,19 @@
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr @click="handleSort" :class="`sortable sort_by_${sortColumn} sort_direction_${sortDirection}`">
-                <th data-title="rank"><span>Rank</span></th>
+                <th data-title="rank" class="has-text-centered"><span>Rank</span></th>
                 <th data-title="name"><span>Name</span></th>
                 <th data-title="symbol"><span>Symbol</span></th>
-                <th data-title="price_usd"><span>Price {{ currency }}</span></th>
-                <th data-title="market_cap_usd"><span>Market Cap {{ currency }}</span></th>
-                <th data-title="percent_change_1h"><span>1H change</span></th>
-                <th data-title="percent_change_24h"><span>24H change</span></th>
-                <th data-title="percent_change_7d"><span>7d change</span></th>
+                <th data-title="price_usd" class="has-text-right"><span>Price {{ selectedCurrency }}</span></th>
+                <th data-title="market_cap_usd" class="has-text-right"><span>Market Cap {{ selectedCurrency }}</span></th>
+                <th data-title="percent_change_1h" class="has-text-right"><span>1H change</span></th>
+                <th data-title="percent_change_24h" class="has-text-right"><span>24H change</span></th>
+                <th data-title="percent_change_7d" class="has-text-right"><span>7d change</span></th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="coin in coins">
-                <td>{{ coin.rank }}</td>
+            <tr v-for="coin in coinsToShow">
+                <td class="has-text-centered">{{ coin.rank }}</td>
                 <td>
                     <router-link :to="{ name: 'CurrencyPage', params: { currency: coin.id }}">
                         <img :src="`https://files.coinmarketcap.com/static/img/coins/16x16/${coin.id}.png`" alt="">
@@ -22,15 +22,15 @@
                     </router-link>
                 </td>
                 <td>{{ coin.symbol }}</td>
-                <td>{{ coin.price_usd | number_format }}</td>
-                <td>{{ coin.market_cap_usd | number_format }}</td>
-                <td>
+                <td class="has-text-right">{{ coin.price | number_format | currency }}</td>
+                <td class="has-text-right">{{ coin.market_cap | number_format | currency }}</td>
+                <td class="has-text-right">
                     <colorize :value="coin.percent_change_1h">{{ coin.percent_change_1h | number_format | percent }}</colorize>
                 </td>
-                <td>
+                <td class="has-text-right">
                     <colorize :value="coin.percent_change_24h">{{ coin.percent_change_24h | number_format | percent }}</colorize>
                 </td>
-                <td>
+                <td class="has-text-right">
                     <colorize :value="coin.percent_change_7d">{{ coin.percent_change_7d | number_format | percent }}</colorize>
                 </td>
             </tr>
@@ -49,14 +49,11 @@
         },
         computed: {
             ...mapGetters([
-                'allCoins',
+                'coinsToShow',
                 'sortColumn',
                 'sortDirection',
-                'currency',
+                'selectedCurrency',
             ]),
-            coins() {
-                return this.allCoins.slice(0, this.$store.state.coins.pagination.perPage);
-            }
         },
         methods: {
             ...mapActions([
