@@ -18,6 +18,8 @@
 
             <div class="navbar-menu">
                 <router-link class="navbar-item" :to="{ name: 'MainPage' }">Convertor</router-link>
+                <router-link class="navbar-item" :to="{ name: 'MainPage' }">FAQ</router-link>
+                <router-link class="navbar-item" :to="{ name: 'TodoPage' }">TODO</router-link>
 
                 <!--<div class="navbar-start">
                     <div class="navbar-item has-dropdown">
