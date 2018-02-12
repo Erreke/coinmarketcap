@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import MainPage from '@/pages/MainPage'
-import CurrencyPage from '@/pages/CurrencyPage'
+import SpecificCoinPage from '@/pages/SpecificCoinPage'
 import ConvertorPage from '@/pages/ConvertorPage'
 import FaqPage from '@/pages/FaqPage'
+import DisclaimerPage from '@/pages/DisclaimerPage'
 import TodoPage from '@/pages/TodoPage'
 
 Vue.use(Router);
@@ -18,9 +19,9 @@ export default new Router({
             component: MainPage
         },
         {
-            path: '/currencies/:currency',
-            name: 'CurrencyPage',
-            component: CurrencyPage
+            path: '/coin/:alias',
+            name: 'SpecificCoinPage',
+            component: SpecificCoinPage
         },
         {
             path: '/convertor/',
@@ -31,6 +32,11 @@ export default new Router({
             path: '/faq/',
             name: 'FaqPage',
             component: FaqPage
+        },
+        {
+            path: '/disclaimer/',
+            name: 'DisclaimerPage',
+            component: DisclaimerPage
         },
         {
             path: '/todo/',

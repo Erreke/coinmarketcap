@@ -1,7 +1,7 @@
 <template>
     <nav class="level">
         <div class="level-left">
-            <currency-selector></currency-selector>
+            <p>qweqwe</p>
         </div>
         <div class="level-right">
             <div class="control">
@@ -17,13 +17,3 @@
         </div>
     </nav>
 </template>
-
-<script>
-    import CurrencySelector from '@/components/CurrencySelector';
-
-    export default {
-        components: {
-            CurrencySelector
-        },
-    }
-</script>

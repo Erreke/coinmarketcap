@@ -52,7 +52,7 @@
                 'selectedCurrency',
             ]),
             isDataRecieved() {
-                return !!this.$store.state.global;
+                return this.$store.state.global;
             },
             total_market_cap() {
                 return this.$store.state.global[`total_market_cap_${this.selectedCurrency.toLowerCase()}`]
@@ -70,13 +70,5 @@
                 return this.$store.state.global.active_markets
             },
         },
-
-        /*
-            this.total_market_cap_usd = this.$store.state.global.total_market_cap_usd;
-            this.total_24h_volume_usd = this.$store.state.global.total_24h_volume_usd;
-            this.bitcoin_percentage_of_market_cap = this.$store.state.global.bitcoin_percentage_of_market_cap;
-            this.active_currencies =  this.$store.state.global.active_currencies;
-            this.active_markets = this.$store.state.global.active_markets;
-        */
     }
 </script>

@@ -16,7 +16,7 @@
             <tr v-for="coin in coinsToShow">
                 <td class="has-text-centered">{{ coin.rank }}</td>
                 <td>
-                    <router-link :to="{ name: 'CurrencyPage', params: { currency: coin.id }}">
+                    <router-link :to="{ name: 'SpecificCoinPage', params: { alias: coin.id }}">
                         <img :src="`https://files.coinmarketcap.com/static/img/coins/16x16/${coin.id}.png`" alt="">
                         {{ coin.name }}
                     </router-link>

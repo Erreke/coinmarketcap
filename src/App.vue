@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import { mapGetters, mapActions } from 'vuex';
+    import { mapActions } from 'vuex';
 
     import Jumbotron from '@/components/Jumbotron';
     import Header from '@/components/Header';
@@ -29,14 +29,14 @@
             'app-statistics': Statistics,
             'app-footer': Footer,
         },
-        mounted() {
-            this.FETCH_DATA();
-        },
         methods: {
-            ...mapActions([
-                'FETCH_DATA',
-            ]),
-        }
+            ...mapActions({
+                fetchData: 'FETCH_DATA',
+            }),
+        },
+        mounted() {
+            this.fetchData();
+        },
     }
 </script>
 

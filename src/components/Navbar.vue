@@ -5,24 +5,22 @@
                 <router-link class="navbar-item is-tab" :to="{ name: 'MainPage' }">Home</router-link>
                 <router-link class="navbar-item is-tab" :to="{ name: 'ConvertorPage' }">Convertor</router-link>
                 <router-link class="navbar-item is-tab" :to="{ name: 'FaqPage' }">FAQ</router-link>
+                <router-link class="navbar-item is-tab" :to="{ name: 'DisclaimerPage' }">Disclaimer</router-link>
                 <router-link class="navbar-item is-tab" :to="{ name: 'TodoPage' }">TODO</router-link>
             </div>
+
+            <last-updated></last-updated>
         </div>
     </nav>
 </template>
 
 <script>
+    import LastUpdated from '@/components/LastUpdated';
+
     export default {
         name: 'navbar',
-        data() {
-            return {
-                currentPage: this.$route.params.currency
-            }
-        },
-        computed: {
-            notMainPage() {
-                return this.$route.name !== 'MainPage';
-            }
+        components: {
+            LastUpdated
         }
     }
 </script>

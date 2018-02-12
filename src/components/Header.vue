@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar is-fixed-top is-light" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-fixed-top is-light" role="navigation">
         <div class="container">
 
             <div class="navbar-brand">
@@ -17,17 +17,15 @@
             <div class="navbar-menu">
                 <div class="navbar-end">
 
-                    <p class="navbar-item">
-                        <a class="button is-info" href="https://github.com/Erreke/coinmarketcap">
-                          <span class="icon">
-                            <i class="fab fa-github" aria-hidden="true"></i>
-                          </span>
-                            <span>Github</span>
-                        </a>
-                    </p>
+                    <a class="navbar-item" href="https://github.com/Erreke/coinmarketcap" target="_blank">
+                        <span class="icon" style="color: #333;">
+                          <i class="fab fa-github"></i>
+                        </span>
+                    </a>
 
+                    <selector-currency></selector-currency>
 
-                    <language-selector></language-selector>
+                    <selector-language></selector-language>
 
                     <night-mode-switcher></night-mode-switcher>
                 </div>
@@ -38,13 +36,14 @@
 </template>
 
 <script>
-    import LanguageSelector from '@/components/LanguageSelector';
+    import SelectorCurrency from '@/components/SelectorCurrency';
+    import SelectorLanguage from '@/components/SelectorLanguage';
     import NightModeSwitcher from '@/components/NightModeSwitcher';
 
     export default {
-        name: 'header',
         components: {
-            LanguageSelector,
+            SelectorCurrency,
+            SelectorLanguage,
             NightModeSwitcher,
         },
     }

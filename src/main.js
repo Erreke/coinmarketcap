@@ -17,12 +17,12 @@ Vue.filter('number_format', function (value) {
     return new Intl.NumberFormat().format(value);
 });
 
-Vue.filter('currency', function (value) {
+Vue.filter('currency', function (value, curr) {
     if (!value) return value;
 
     const currencies = store().state.currencies;
     const selectedCurrency = store().state.selectedCurrency;
-    const sign = currencies[selectedCurrency].sign;
+    const sign = curr || currencies[selectedCurrency].sign;
 
     /*{
         'USD': '$',
