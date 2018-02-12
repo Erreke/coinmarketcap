@@ -1,5 +1,5 @@
 <template>
-    <div :class="['navbar-item has-dropdown', { 'is-active': isActive }]" @mouseenter="handleActivate" @mouseleave="handleDeactivate">
+    <div :class="['navbar-item has-dropdown', { 'is-active': isOpened }]" @mouseenter="handleActivate" @mouseleave="handleDeactivate">
         <a class="navbar-link" href="#">{{ selectedCurrency }}</a>
         <div class="navbar-dropdown is-boxed">
             <div class="columns">
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex';
+    import { mapState } from 'vuex';
 
     export default {
         data() {
@@ -23,28 +23,27 @@
                 cols: 2,
                 rows: 17,
                 table: [],
-                isActive: false,
-                isLoading: true,
-
+                isOpened: false,
             }
         },
         computed: {
-            ...mapGetters([
+            ...mapState([
                 'currencies',
                 'selectedCurrency',
+                'isCurrencyChangeUpdating',
             ]),
         },
         methods: {
             handleSelect(e) {
-                this.$store.dispatch('SELECT_CURRENCY', e.target.dataset.value)
+                // this.$store.dispatch('SELECT_CURRENCY', e.target.dataset.value)
+
+                this.$store.dispatch('SELECT_CURRENCY', e.target.innerText);
             },
             handleActivate() {
-                console.log('handleActivate');
-                this.isActive = true;
+                this.isOpened = true;
             },
             handleDeactivate() {
-                console.log('handleDeactivate');
-                this.isActive = false;
+                this.isOpened = false;
             },
         },
         mounted() {

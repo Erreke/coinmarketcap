@@ -31,11 +31,11 @@
         },
         methods: {
             ...mapActions({
-                fetchData: 'FETCH_DATA',
+                fetchAll: 'FETCH_ALL',
             }),
         },
         mounted() {
-            this.fetchData();
+            this.fetchAll();
         },
     }
 </script>

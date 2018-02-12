@@ -1,66 +1,79 @@
 import axios from 'axios';
 
 export default {
-    FETCH_DATA({commit, dispatch, getters}) {
+    FETCH_ALL({ dispatch }, isForceUpdate = false) {
+        dispatch('FETCH_GLOBAL', isForceUpdate);
+        dispatch('FETCH_COINS', isForceUpdate);
+    },
+    
+    FETCH_GLOBAL({ commit, state }, isForceUpdate = false) {
         const global = localStorage.getItem('global');
 
-        if (!global) {
-            axios.get(`https://api.coinmarketcap.com/v1/global/?convert=${getters.selectedCurrency}`)
-                .then(request => {
-                    localStorage.setItem('global', JSON.stringify(request.data));
+        if ( !global || isForceUpdate ) {
+            if (isForceUpdate) {
+                commit('SET_LOADING_STATUS', true);
+            }
 
-                    commit('SET_LAST_UPDATED_DATE', Date.now());
-                    commit('SET_GLOBAL_DATA', request.data);
-                    dispatch('FETCH_COINS');
+            axios.get(`https://api.coinmarketcap.com/v1/global/?convert=${state.selectedCurrency}`)
+                .then(response => {
+                    const timestamp = Date.now();
+
+                    localStorage.setItem('updated', JSON.stringify(timestamp));
+                    localStorage.setItem('global', JSON.stringify(response.data));
+
+                    commit('SET_GLOBAL_DATA', response.data);
+                    commit('SET_LAST_UPDATED_DATE', timestamp);
+                    commit('SET_LOADING_STATUS', false);
                 })
 
         } else {
+            const timestamp = localStorage.getItem('updated');
+
+            commit('SET_LAST_UPDATED_DATE', timestamp);
             commit('SET_GLOBAL_DATA', JSON.parse(global));
-            dispatch('FETCH_COINS');
-
+            
         }
     },
 
-    FETCH_COINS({commit, getters}) {
+    FETCH_COINS({commit, dispatch, getters, state}, isForceUpdate = false) {
         const coins = localStorage.getItem('coins');
+        const start = getters.coinsCount;
 
-        if (!coins) {
-            axios.get(`https://api.coinmarketcap.com/v1/ticker/?limit=100&convert=${getters.selectedCurrency}`)
-                .then(request => {
-                    localStorage.setItem('coins', JSON.stringify(request.data));
+        if (!coins || isForceUpdate) {
+            if (isForceUpdate) {
+                commit('SET_LOADING_STATUS', true);
+            }
+            
+            axios.get(`https://api.coinmarketcap.com/v1/ticker/?start=${start}&limit=100&convert=${state.selectedCurrency}`)
+                .then(response => {
+                    const timestamp = Date.now();
 
-                    commit('SET_COINS', request.data);
+                    localStorage.setItem('updated', JSON.stringify(timestamp));
+                    localStorage.setItem('coins', JSON.stringify(getters.coins.concat(response.data)));
+
+                    commit('ADD_COINS', response.data);
+                    commit('SET_LAST_UPDATED_DATE', timestamp);
+                    commit('SET_LOADING_STATUS', false);
                 })
+                .then(() => {
+                    dispatch('FETCH_COINS', true);
+                })
+                .catch(error => {
+                    console.log(error.response);
+                })
+
         } else {
-            commit('SET_COINS', JSON.parse(coins));
+            const timestamp = localStorage.getItem('updated');
+            commit('SET_LAST_UPDATED_DATE', timestamp);
+            commit('ADD_COINS', JSON.parse(coins));
 
-        }
+        } 
     },
 
-    FETCH_DATA_FORCE({commit, dispatch, getters}) {
-        axios.get(`https://api.coinmarketcap.com/v1/global/?convert=${getters.selectedCurrency}`)
-            .then(request => {
-                localStorage.setItem('global', JSON.stringify(request.data));
-
-                commit('SET_LAST_UPDATED_DATE', Date.now());
-                commit('SET_GLOBAL_DATA', request.data);
-                dispatch('FETCH_COINS_FORCE');
-            })
-    },
-
-    FETCH_COINS_FORCE({commit, getters}) {
-        axios.get(`https://api.coinmarketcap.com/v1/ticker/?limit=100&convert=${getters.selectedCurrency}`)
-            .then(request => {
-                localStorage.setItem('coins', JSON.stringify(request.data));
-
-                commit('SET_COINS', request.data);
-            })
-    },
-
-    FETCH_SPECIFIC_COIN({commit, getters}, coin) {
-        axios.get(`https://api.coinmarketcap.com/v1/ticker/${coin}/?convert=${getters.selectedCurrency}`)
-            .then(request => {
-                commit('SET_SPECIFIC_COIN', request.data);
+    FETCH_SPECIFIC_COIN({commit, state}, coin) {
+        axios.get(`https://api.coinmarketcap.com/v1/ticker/${coin}/?convert=${state.selectedCurrency}`)
+            .then(response => {
+                commit('SET_SPECIFIC_COIN', response.data);
             })
     },
 
@@ -104,6 +117,6 @@ export default {
 
     SELECT_CURRENCY({commit, dispatch}, currency) {
         commit('SET_SELECTED_CURRENCY', currency);
-        dispatch('FETCH_DATA');
+        dispatch('FETCH_ALL', true);
     }
 }

@@ -3,8 +3,6 @@ export default {
         return state.coins.items;
     },
     coinsToShow(state) {
-        console.log(state.coins.items);
-
         const coins = state.coins.items.slice(0, state.coins.pagination.perPage);
 
         return coins.map((coin) => {

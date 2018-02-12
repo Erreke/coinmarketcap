@@ -94,10 +94,8 @@
         computed: {
             ...mapState({
                 coin: 'specificCoin',
+                selectedCurrency: 'selectedCurrency',
             }),
-            ...mapGetters([
-                'selectedCurrency'
-            ]),
             selectedCurrencyLower() {
                 return this.selectedCurrency.toLowerCase()
             },

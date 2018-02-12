@@ -256,7 +256,10 @@ export default {
             isOpened: false,
         },
     ],
-    selectedCurrency: 'RUB',
+    selectedCurrency: 'USD',
     specificCoin: null,
     lastUpdated: null,
+    isLoading: false,
+    isCurrencyChangeUpdating: false,
+    isNeedToContinueLoading: true,
 }

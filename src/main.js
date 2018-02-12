@@ -7,18 +7,21 @@ import store from './store';
 
 Vue.config.productionTip = false;
 
-Vue.filter('percent', function (value) {
-    if (!value) return value;
-    return value + '%';
-});
-
 Vue.filter('number_format', function (value) {
-    if (!value) return value;
+    if (!value) return '—';
     return new Intl.NumberFormat().format(value);
 });
 
+Vue.filter('percent', function (value) {
+    if (!value) return '—';
+    if (value === '—') return value;
+
+    return value + '%';
+});
+
 Vue.filter('currency', function (value, curr) {
-    if (!value) return value;
+    if (!value) return '—';
+    if (value === '—') return value;
 
     const currencies = store().state.currencies;
     const selectedCurrency = store().state.selectedCurrency;

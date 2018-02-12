@@ -3,9 +3,12 @@ export default {
         state.specificCoin = null;
     },
 
+    ADD_COINS (state, coins) {
+        state.coins.items = state.coins.items.concat(coins);
+    },
+
     SET_COINS (state, coins) {
-        console.log(coins);
-        state.coins.items = coins
+        state.coins.items = coins;
     },
 
     SET_SPECIFIC_COIN (state, coin) {
@@ -13,7 +16,6 @@ export default {
     },
 
     SET_GLOBAL_DATA (state, data) {
-        console.log(data);
         state.global = data
     },
 
@@ -45,12 +47,12 @@ export default {
         state.lastUpdated = date;
     },
 
-    TOGGLE_FAQ(state, index) {
-        state.faq[index].isOpened = !state.faq[index].isOpened;
+    SET_LOADING_STATUS(state, status) {
+        state.isLoading = status;
     },
 
-    TOGGLE_UPDATE_NEED_STATUS(state) {
-        state.isNeedToUpdateData = true;
+    TOGGLE_FAQ(state, index) {
+        state.faq[index].isOpened = !state.faq[index].isOpened;
     },
 
 }

@@ -39,7 +39,7 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex';
+    import { mapState } from 'vuex';
     import progress from '@/components/Progress';
 
     export default {
@@ -48,7 +48,7 @@
             'app-progress': progress,
         },
         computed: {
-            ...mapGetters([
+            ...mapState([
                 'selectedCurrency',
             ]),
             isDataRecieved() {
