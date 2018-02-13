@@ -14,6 +14,7 @@
     "bulma": "^0.6.2",
     "bulma-extensions": "^0.7.6",
     "bulma-start": "^0.0.2",
+    "dotenv": "^5.0.0",
     "http": "^0.0.0",
     "moment": "^2.20.1",
     "node-static": "^0.7.10",

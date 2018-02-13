@@ -1,8 +1,12 @@
-'use strict'
+'use strict';
 // Template version: 1.3.1
 // see http://vuejs-templates.github.io/webpack for documentation.
 
-const path = require('path')
+const path = require('path');
+// require('dotenv').config();
+
+const ip = process.env.IP || '0.0.0.0';
+const port = process.env.PORT || 8080;
 
 module.exports = {
   dev: {
@@ -13,14 +17,14 @@ module.exports = {
     proxyTable: {},
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    host: ip, // can be overwritten by process.env.HOST
+    port: port, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */
