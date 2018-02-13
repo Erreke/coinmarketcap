@@ -3,7 +3,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path');
-// require('dotenv').config();
+require('dotenv').config();
 
 const ip = process.env.IP || '0.0.0.0';
 const port = process.env.PORT || 8080;

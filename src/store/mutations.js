@@ -4,7 +4,7 @@ export default {
     },
 
     ADD_COINS (state, coins) {
-        state.coins.items = state.coins.items.concat(coins);
+        state.coins.items = [...state.coins.items, ...coins];
     },
 
     SET_COINS (state, coins) {

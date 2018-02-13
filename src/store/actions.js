@@ -2,11 +2,11 @@ import axios from 'axios';
 
 export default {
     FETCH_ALL({ dispatch }, isForceUpdate = false) {
-        dispatch('FETCH_GLOBAL', isForceUpdate);
-        dispatch('FETCH_COINS', isForceUpdate);
+        dispatch('FETCH_GLOBAL', { isForceUpdate });
+        dispatch('FETCH_COINS', { isForceUpdate });
     },
     
-    FETCH_GLOBAL({ commit, state }, isForceUpdate = false) {
+    FETCH_GLOBAL({ commit, state }, { isForceUpdate = false }) {
         const global = localStorage.getItem('global');
 
         if ( !global || isForceUpdate ) {
@@ -35,7 +35,8 @@ export default {
         }
     },
 
-    FETCH_COINS({commit, dispatch, getters, state}, isForceUpdate = false) {
+    FETCH_COINS({commit, dispatch, getters, state}, { isForceUpdate = false, isRecursive = false }) {
+        debugger;
         const coins = localStorage.getItem('coins');
         const start = getters.coinsCount;
 
@@ -46,20 +47,34 @@ export default {
             
             axios.get(`https://api.coinmarketcap.com/v1/ticker/?start=${start}&limit=100&convert=${state.selectedCurrency}`)
                 .then(response => {
+                    debugger;
+
                     const timestamp = Date.now();
 
                     localStorage.setItem('updated', JSON.stringify(timestamp));
                     localStorage.setItem('coins', JSON.stringify(getters.coins.concat(response.data)));
 
-                    commit('ADD_COINS', response.data);
+                    if (isRecursive) {
+                        commit('ADD_COINS', response.data);
+
+                    } else {
+                        commit('SET_COINS', response.data);
+
+                    }
+
                     commit('SET_LAST_UPDATED_DATE', timestamp);
                     commit('SET_LOADING_STATUS', false);
                 })
                 .then(() => {
-                    dispatch('FETCH_COINS', true);
+                    debugger;
+
+                    dispatch('FETCH_COINS', {
+                        isForceUpdate: true,
+                        isRecursive: true,
+                    });
                 })
                 .catch(error => {
-                    console.log(error.response);
+                    console.log(error.response.data.error);
                 })
 
         } else {
