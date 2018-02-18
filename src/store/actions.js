@@ -36,7 +36,6 @@ export default {
     },
 
     FETCH_COINS({commit, dispatch, getters, state}, { isForceUpdate = false, isRecursive = false }) {
-        debugger;
         const coins = localStorage.getItem('coins');
         const start = getters.coinsCount;
 
@@ -47,8 +46,6 @@ export default {
             
             axios.get(`https://api.coinmarketcap.com/v1/ticker/?start=${start}&limit=100&convert=${state.selectedCurrency}`)
                 .then(response => {
-                    debugger;
-
                     const timestamp = Date.now();
 
                     localStorage.setItem('updated', JSON.stringify(timestamp));
@@ -66,8 +63,6 @@ export default {
                     commit('SET_LOADING_STATUS', false);
                 })
                 .then(() => {
-                    debugger;
-
                     dispatch('FETCH_COINS', {
                         isForceUpdate: true,
                         isRecursive: true,

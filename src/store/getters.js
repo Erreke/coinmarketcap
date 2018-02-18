@@ -3,7 +3,9 @@ export default {
         return state.coins.items;
     },
     coinsToShow(state) {
-        const coins = state.coins.items.slice(0, state.coins.pagination.perPage);
+        const start = (state.coins.pagination.current - 1) * state.coins.pagination.perPage;
+        const end = start + state.coins.pagination.perPage;
+        const coins = state.coins.items.slice(start, end);
 
         return coins.map((coin) => {
             return {
@@ -21,9 +23,6 @@ export default {
     },
     coinsCount(state) {
         return state.coins.items.length
-    },
-    paginationStart(state) {
-        return state.coins.pagination.start
     },
     paginationCurrent(state) {
         return state.coins.pagination.current

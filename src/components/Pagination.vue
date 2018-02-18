@@ -1,67 +1,20 @@
 <template>
-    <nav class="pagination is-right is-primary" role="navigation" aria-label="pagination">
+    <nav class="pagination is-right is-primary">
+
         <limiter></limiter>
-        <ul class="pagination-list">
-            <li>
-                <a class="pagination-link" aria-label="Goto page 1">1</a>
-            </li>
-            <li>
-                <span class="pagination-ellipsis">&hellip;</span>
-            </li>
-            <li>
-                <a class="pagination-link" aria-label="Goto page 45">45</a>
-            </li>
-            <li>
-                <a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a>
-            </li>
-            <li>
-                <a class="pagination-link" aria-label="Goto page 47">47</a>
-            </li>
-            <li>
-                <span class="pagination-ellipsis">&hellip;</span>
-            </li>
-            <li>
-                <a class="pagination-link" aria-label="Goto page 86">86</a>
+
+        <ul class="pagination-list" v-if="pagesCount > 1">
+            <li v-for="page in pages">
+                <span class="pagination-ellipsis" v-if="page.ellipse">&hellip;</span>
+                <a :class="['pagination-link', { 'is-current': page.current }]" href="#"
+                   @click.prevent="handleClickToPage" v-else>{{ page.value }}</a>
             </li>
         </ul>
-    </nav><!--
-
-    <div>
-
-
-        <ul class="pagination justify-content-end">
-            <li class="page-item" v-if="isFirstShowed">
-                <a class="page-link" href="#" @click.prevent="handleClickToFirstPage">First</a>
-            </li>
-
-            <li class="page-item" v-if="isPreviousShowed">
-                <a class="page-link" href="#" @click.prevent="handleClickToPreviousPage">Previous</a>
-            </li>
-
-            <li class="page-item disabled" v-if="isBeforeEllipsesShowed">
-                <a class="page-link" tabindex="-1">...</a>
-            </li>
-
-            <li v-for="page in pages" :class="['page-item', { 'active': page === paginationCurrent }]">
-                <a class="page-link" href="#" @click.prevent="handleClickToPage">{{ page }}</a>
-            </li>
-
-            <li class="page-item disabled" v-if="isAfterEllipsesShowed">
-                <a class="page-link" tabindex="-1">...</a>
-            </li>
-
-            <li class="page-item" v-if="isNextShowed">
-                <a class="page-link" href="#" @click.prevent="handleClickToNextPage">Next</a>
-            </li>
-            <li class="page-item" v-if="isLastShowed">
-                <a class="page-link" href="#" @click.prevent="handleClickToLastPage">Last</a>
-            </li>
-        </ul>
-    </div>-->
+    </nav>
 </template>
 
 <script>
-    import { mapGetters, mapMutations } from 'vuex';
+    import {mapGetters, mapMutations} from 'vuex';
     import limiter from '@/components/Limiter';
 
     export default {
@@ -69,77 +22,167 @@
         components: {
             limiter,
         },
-        data() {
-            return {
-                beforePagesCount: 2,
-                afterPagesCount: 2,
-            }
-        },
         computed: {
-            ...mapGetters([
-                'paginationStart',
-                'paginationCurrent',
-                'paginationPerPage',
-                'coinsCount',
-            ]),
-            allPages() {
-                return Math.ceil(this.coinsCount / this.paginationPerPage);
+            ...mapGetters({
+                current: 'paginationCurrent',
+                perPage: 'paginationPerPage',
+                count: 'coinsCount',
+            }),
+            pagesCount() {
+                return Math.ceil(this.count / this.perPage);
+                return 26;
             },
             pages() {
-                if (this.paginationCurrent < 3) {
-                    return [this.paginationCurrent, this.paginationCurrent + 1, this.paginationCurrent + 2, this.paginationCurrent + 3, this.paginationCurrent + 4, this.paginationCurrent + 5];
+                const result = [];
+                const length = this.pagesCount > 7 ? 7 : this.pagesCount;
+                // const length = this.pagesCount;
 
-                } else if (this.paginationCurrent > this.allPages + 3){
-                    return [this.paginationCurrent - 5, this.paginationCurrent - 4, this.paginationCurrent - 3, this.paginationCurrent -2,  this.paginationCurrent - 1, this.paginationCurrent];
+                if(this.pagesCount <= 7) {
+
+                    console.log('this.pagesCount <= 7');
+
+                    for (let i =1; i <= length; i++) {
+                        result.push({
+                            value: i,
+                            current: this.current === i,
+                            ellipse: false,
+                        });
+                    }
 
                 } else {
-                    return [this.paginationCurrent - 2, this.paginationCurrent - 1, this.paginationCurrent, this.paginationCurrent + 1, this.paginationCurrent + 2];
+
+                    console.log('NOT this.pagesCount <= 7');
+
+                    if (this.current <= 4) {
+                        console.log('this.current <= 4');
+
+
+                        result.push({
+                            value: 1,
+                            current: this.current === 1,
+                            ellipse: false,
+                        });
+                        result.push({
+                            value: 2,
+                            current: this.current === 2,
+                            ellipse: false,
+                        });
+                        result.push({
+                            value: 3,
+                            current: this.current === 3,
+                            ellipse: false,
+                        });
+                        result.push({
+                            value: 4,
+                            current: this.current === 4,
+                            ellipse: false,
+                        });
+                        result.push({
+                            value: 5,
+                            current: this.current === 5,
+                            ellipse: false,
+                        });
+                        result.push({
+                            ellipse: true,
+                        });
+                        result.push({
+                            value: this.pagesCount,
+                            current: this.current === this.pagesCount,
+                            ellipse: false,
+                        });
+                    } else if (this.current > 4 && this.current < this.pagesCount -4) {
+                        console.log('this.current > 4 && this.current < this.pagesCount -4');
+
+
+                        result.push({
+                            value: 1,
+                            current: this.current === 1,
+                            ellipse: false,
+                        });
+                        result.push({
+                            ellipse: true,
+                        });
+                        result.push({
+                            value: this.current - 1,
+                            current: false,
+                            ellipse: false,
+                        });
+                        result.push({
+                            value: this.current,
+                            current: true,
+                            ellipse: false,
+                        });
+                        result.push({
+                            value: this.current + 1,
+                            current: false,
+                            ellipse: false,
+                        });
+                        result.push({
+                            ellipse: true,
+                        });
+                        result.push({
+                            value: this.pagesCount,
+                            current: false,
+                            ellipse: false,
+                        });
+                    } else if (this.current <= this.pagesCount - 4) {
+                        console.log('this.current + 4 <= this.pagesCount');
+
+
+                        result.push({
+                            value: 1,
+                            current: this.current === 1,
+                            ellipse: false,
+                        });
+                        result.push({
+                            ellipse: true,
+                        });
+                        result.push({
+                            value: this.pagesCount - 4,
+                            current: this.current === this.pagesCount - 4,
+                            ellipse: false,
+                        });
+                        result.push({
+                            value: this.pagesCount - 3,
+                            current: this.current === this.pagesCount - 3,
+                            ellipse: false,
+                        });
+                        result.push({
+                            value: this.pagesCount - 2,
+                            current: this.current === this.pagesCount - 2,
+                            ellipse: false,
+                        });
+                        result.push({
+                            value: this.pagesCount - 1,
+                            current: this.current === this.pagesCount - 1,
+                            ellipse: false,
+                        });
+                        result.push({
+                            value: this.pagesCount,
+                            current: this.current === this.pagesCount,
+                            ellipse: false,
+                        });
+                    }
 
                 }
+
+
+
+
+
+
+
+                return result;
             },
-            isFirstShowed() {
-                return this.paginationCurrent > this.beforePagesCount + 1;
-            },
-            isPreviousShowed() {
-                return this.paginationCurrent > this.beforePagesCount + 1;
-            },
-            isBeforeEllipsesShowed() {
-                return this.paginationCurrent > this.beforePagesCount + 2;
-            },
-            isAfterEllipsesShowed() {
-                return this.paginationCurrent < this.pages - this.afterPagesCount - 2;
-            },
-            isNextShowed() {
-                return this.paginationCurrent < this.pages - this.afterPagesCount - 1;
-            },
-            isLastShowed() {
-                return this.paginationCurrent < this.pages - this.afterPagesCount - 1;
-            }
         },
         methods: {
-            ...mapMutations([
-                'SET_COINS_LIMIT',
-                'SET_PAGINATION_CURRENT'
-            ]),
-            handleClickToFirstPage() {
-                this.SET_PAGINATION_CURRENT(1);
-            },
-
-            handleClickToPreviousPage() {
-                let value = this.paginationCurrent;
-                this.SET_PAGINATION_CURRENT(--value);
-            },
-            handleClickToNextPage() {
-                let value = this.paginationCurrent;
-                this.SET_PAGINATION_CURRENT(++value);
-            },
-            handleClickToLastPage() {
-                this.SET_PAGINATION_CURRENT(this.allPages);
-            },
+            ...mapMutations({
+                setPaginationCurrent: 'SET_PAGINATION_CURRENT'
+            }),
             handleClickToPage(e) {
                 const page = e.target.text;
 
-                this.SET_PAGINATION_CURRENT(parseInt(page));
+                this.setPaginationCurrent(parseInt(page));
             },
         }
     }

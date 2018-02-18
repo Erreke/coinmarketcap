@@ -3,7 +3,6 @@ export default {
     coins: {
         items: [],
         pagination: {
-            start: 0,
             current: 1,
             perPage: 10,
         },

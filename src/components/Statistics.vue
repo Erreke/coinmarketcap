@@ -5,13 +5,17 @@
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading">Market Cap:</p>
-                        <p class="title">{{ total_market_cap | number_format | currency}}</p>
+                        <p class="title tooltip is-tooltip-bottom" :data-tooltip="total_market_cap | number_format | currency">
+                            {{ total_market_cap | shortener | currency}}
+                        </p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading">24h Vol:</p>
-                        <p class="title">{{ total_24h_volume | number_format | currency }}</p>
+                        <p class="title tooltip is-tooltip-bottom" :data-tooltip="total_24h_volume | number_format | currency">
+                            {{ total_24h_volume | shortener | currency }}
+                        </p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
@@ -29,7 +33,9 @@
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading">Markets:</p>
-                        <p class="title">{{ active_markets | number_format }}</p>
+                        <p class="title tooltip is-tooltip-bottom" :data-tooltip="active_markets | number_format">
+                            {{ active_markets | shortener }}
+                        </p>
                     </div>
                 </div>
             </nav>

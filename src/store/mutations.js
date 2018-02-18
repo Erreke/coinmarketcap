@@ -27,10 +27,6 @@ export default {
         state.coins.sort.direction = type
     },
 
-    SET_PAGINATION_START (state, start) {
-        state.coins.pagination.start = start
-    },
-
     SET_PAGINATION_PER_PAGE (state, perPage) {
         state.coins.pagination.perPage = perPage
     },
