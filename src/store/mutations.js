@@ -47,8 +47,4 @@ export default {
         state.isLoading = status;
     },
 
-    TOGGLE_FAQ(state, index) {
-        state.faq[index].isOpened = !state.faq[index].isOpened;
-    },
-
 }

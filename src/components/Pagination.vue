@@ -30,17 +30,12 @@
             }),
             pagesCount() {
                 return Math.ceil(this.count / this.perPage);
-                return 26;
             },
             pages() {
                 const result = [];
                 const length = this.pagesCount > 7 ? 7 : this.pagesCount;
-                // const length = this.pagesCount;
 
                 if(this.pagesCount <= 7) {
-
-                    console.log('this.pagesCount <= 7');
-
                     for (let i =1; i <= length; i++) {
                         result.push({
                             value: i,
@@ -50,13 +45,7 @@
                     }
 
                 } else {
-
-                    console.log('NOT this.pagesCount <= 7');
-
                     if (this.current <= 4) {
-                        console.log('this.current <= 4');
-
-
                         result.push({
                             value: 1,
                             current: this.current === 1,
@@ -90,10 +79,8 @@
                             current: this.current === this.pagesCount,
                             ellipse: false,
                         });
-                    } else if (this.current > 4 && this.current < this.pagesCount -4) {
-                        console.log('this.current > 4 && this.current < this.pagesCount -4');
 
-
+                    } else if (this.current > 4 && this.current <= this.pagesCount - 4) {
                         result.push({
                             value: 1,
                             current: this.current === 1,
@@ -125,10 +112,8 @@
                             current: false,
                             ellipse: false,
                         });
-                    } else if (this.current <= this.pagesCount - 4) {
-                        console.log('this.current + 4 <= this.pagesCount');
 
-
+                    } else  {
                         result.push({
                             value: 1,
                             current: this.current === 1,
@@ -162,15 +147,10 @@
                             current: this.current === this.pagesCount,
                             ellipse: false,
                         });
+
                     }
 
                 }
-
-
-
-
-
-
 
                 return result;
             },

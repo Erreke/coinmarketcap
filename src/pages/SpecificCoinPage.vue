@@ -74,8 +74,21 @@
                 </div>
             </div>
 
-            <p>24H Volume ({{ selectedCurrency }}): {{ coin[`24h_volume_${selectedCurrencyLower}`] }}</p>
-            <p>Market Capitalization ({{ selectedCurrency }}): {{ coin[`market_cap_${selectedCurrencyLower}`] }}</p>
+            <div class="columns">
+                <div class="column">
+                    <article class="notification">
+                        <p class="title">{{ coin[`24h_volume_${selectedCurrencyLower}`] | number_format }}</p>
+                        <p class="subtitle">24H Volume ({{ selectedCurrency }})</p>
+                    </article>
+                </div>
+                <div class="column">
+                    <article class="notification">
+                        <p class="title">{{ coin[`market_cap_${selectedCurrencyLower}`] | number_format}}</p>
+                        <p class="subtitle">Market Capitalization ({{ selectedCurrency }})</p>
+                    </article>
+                </div>
+            </div>
+
         </div>
         <app-progress v-else></app-progress>
     </div>

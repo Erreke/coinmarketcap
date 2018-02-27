@@ -1,6 +1,6 @@
 <template>
     <article :class="[ 'accordion', 'is-info', { 'is-active': item.isOpened } ]">
-        <div class="accordion-header toggle" @click="TOGGLE_FAQ(index)">
+        <div class="accordion-header toggle" @click="handleToggle">
             <p>{{ item.q }}</p>
             <i class="icon"></i>
         </div>
@@ -11,17 +11,15 @@
 </template>
 
 <script>
-    import { mapMutations } from 'vuex';
-
     export default {
         props: [
             'index',
             'item',
         ],
         methods: {
-            ...mapMutations([
-                'TOGGLE_FAQ'
-            ]),
+            handleToggle() {
+                this.item.isOpened = !this.item.isOpened;
+            },
         },
     }
 </script>

@@ -24,7 +24,7 @@
                 return moment(date).fromNow();
             },
             isNeedToUpdateData() {
-                return Date.now() > parseInt(this.lastUpdated) + 1000 * 60 * 10;
+                return this.isLoading || Date.now() > parseInt(this.lastUpdated) + 1000 * 60 * 10;
             }
         },
         methods: {

@@ -17,7 +17,6 @@
                 <td class="has-text-centered">{{ coin.rank }}</td>
                 <td>
                     <router-link :to="{ name: 'SpecificCoinPage', params: { alias: coin.id }}">
-                        <img :src="`https://files.coinmarketcap.com/static/img/coins/16x16/${coin.id}.png`" alt="">
                         {{ coin.name }}
                     </router-link>
                 </td>
@@ -39,7 +38,7 @@
 </template>
 
 <script>
-    import { mapState, mapGetters, mapActions } from 'vuex';
+    import { mapState, mapGetters, mapMutations } from 'vuex';
     import colorize from '@/components/Colorize';
 
     export default {
@@ -49,6 +48,7 @@
         },
         computed: {
             ...mapGetters([
+                'coins',
                 'coinsToShow',
                 'sortColumn',
                 'sortDirection',
@@ -58,9 +58,11 @@
             ]),
         },
         methods: {
-            ...mapActions([
-                'SORT_COINS'
-            ]),
+            ...mapMutations({
+                setSortDirectionType: 'SET_SORT_DIRECTION_TYPE',
+                setSortedColumnName: 'SET_SORTED_COLUMN_NAME',
+                setCoins: 'SET_COINS'
+            }),
             handleSort(e) {
                 let title = null;
                 const target = e.target;
@@ -75,9 +77,20 @@
                 }
 
                 if (title) {
-                    this.SORT_COINS(title);
+                    this.$worker.postMessage({
+                        title: title,
+                        coins: this.coins,
+                        sortDirection: this.sortDirection
+                    });
                 }
             }
+        },
+        created() {
+            this.$worker.addEventListener('message', (e) => {
+                this.setSortDirectionType(e.data.direction);
+                this.setSortedColumnName(e.data.title);
+                this.setCoins(e.data.coins);
+            });
         }
     }
 </script>
