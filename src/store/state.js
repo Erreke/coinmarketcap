@@ -1,5 +1,6 @@
 export default {
     locale: 'en',
+    isDarkTheme: false,
     coins: {
         items: [],
         pagination: {

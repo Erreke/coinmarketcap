@@ -1,7 +1,7 @@
 <template>
     <nav class="pagination is-right is-primary">
 
-        <limiter></limiter>
+        <limiter />
 
         <ul class="pagination-list" v-if="pagesCount > 1">
             <li v-for="page in pages">

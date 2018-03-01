@@ -35,16 +35,20 @@ export default {
         state.coins.pagination.current = current
     },
 
-    SET_SELECTED_CURRENCY(state, currency) {
+    SET_SELECTED_CURRENCY (state, currency) {
         state.selectedCurrency = currency;
     },
 
-    SET_LAST_UPDATED_DATE(state, date) {
+    SET_LAST_UPDATED_DATE (state, date) {
         state.lastUpdated = date;
     },
 
-    SET_LOADING_STATUS(state, status) {
+    SET_LOADING_STATUS (state, status) {
         state.isLoading = status;
+    },
+
+    SET_DARK_THEME (state, payload) {
+        state.isDarkTheme = payload;
     },
 
 }

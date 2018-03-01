@@ -1,19 +1,20 @@
 <template>
-    <div id="app">
-        <app-header></app-header>
-        <app-jumbotron></app-jumbotron>
-        <app-navbar></app-navbar>
+    <layout>
+        <app-header />
+        <app-jumbotron />
+        <app-navbar />
 
-        <router-view></router-view>
+        <router-view />
 
-        <app-statistics></app-statistics>
-        <app-footer></app-footer>
-    </div>
+        <app-statistics />
+        <app-footer />
+    </layout>
 </template>
 
 <script>
     import { mapActions } from 'vuex';
 
+    import Layout from '@/layouts';
     import Jumbotron from '@/components/Jumbotron';
     import Header from '@/components/Header';
     import Navbar from '@/components/Navbar';
@@ -23,6 +24,7 @@
     export default {
         name: 'App',
         components: {
+            Layout,
             'app-header': Header,
             'app-jumbotron': Jumbotron,
             'app-navbar': Navbar,
@@ -39,8 +41,3 @@
         },
     }
 </script>
-
-<style lang="scss">
-    @import 'node_modules/bulma/bulma.sass';
-    @import 'node_modules/bulma-extensions/extensions.sass';
-</style>
