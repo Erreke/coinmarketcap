@@ -228,6 +228,9 @@ a:hover,
   border-bottom-color: $grey-lighter;
   color: $grey-lighter;
 }
+.accordions .accordion.is-info {
+  background-color: $grey-dark;
+}
 .accordions .accordion.is-info .accordion-header {
   background-color: $grey-darkest;
   color: $grey-lighter;
@@ -237,7 +240,7 @@ a:hover,
 }
 .accordions .accordion.is-info .accordion-content,
 .accordions .accordion.is-info .accordion-content * {
-  color: $grey-darkest;
+  color: $grey-lighter;
 }
 .tooltip.is-tooltip-bottom:focus::before,
 .tooltip.is-tooltip-bottom:hover::before,
@@ -314,4 +317,13 @@ a.navbar-link.is-active {
 .sort_by_percent_change_24h.sort_direction_desc th[data-title="percent_change_24h"] span::after,
 .sort_by_percent_change_7d.sort_direction_desc th[data-title="percent_change_7d"] span::after {
   border-color: transparent transparent $grey-lighter transparent;
+}
+.notification {
+  background-color: $grey-dark;
+}
+.notification.is-primary {
+  background-color: #01443a;
+}
+.notification.is-danger {
+  background-color: #42010e;
 }

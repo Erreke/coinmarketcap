@@ -37,7 +37,7 @@
           <li><del>Сбрасывать на первую страницу при Force Update</del></li>
           <li><del>Night mode</del></li>
           <li><del>Переделать некоторые цвета темной темы</del></li>
-          <li>i18n</li>
+          <li><del>i18n</del></li>
           <li>Повесить лоадеры: при смене страницы и количества в пагинаторе</li>
           <li>Переделать фильтры: number_format, percent и currency с использованием Intl.NumberFormat</li>
           <li>Пофиксить по возможности задержку при работе большим количеством данных: getter - coinsToShow</li>
