@@ -23,11 +23,11 @@
                         </span>
                     </a>
 
-                    <selector-currency></selector-currency>
+                    <selector-currency />
 
-                    <selector-language></selector-language>
+                    <selector-language />
 
-                    <night-mode-switcher></night-mode-switcher>
+                    <night-mode-switcher />
                 </div>
             </div>
 

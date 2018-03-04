@@ -4,7 +4,7 @@
             <nav class="level" v-if="isDataRecieved">
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="heading">Market Cap:</p>
+                        <p class="heading">{{ $t('statistics.total-market-cap') }}</p>
                         <p class="title tooltip is-tooltip-bottom" :data-tooltip="total_market_cap | number_format | currency">
                             {{ total_market_cap | shortener | currency}}
                         </p>
@@ -12,7 +12,7 @@
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="heading">24h Vol:</p>
+                        <p class="heading">{{ $t('statistics.total-24h-volume') }}</p>
                         <p class="title tooltip is-tooltip-bottom" :data-tooltip="total_24h_volume | number_format | currency">
                             {{ total_24h_volume | shortener | currency }}
                         </p>
@@ -20,26 +20,26 @@
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="heading">BTC Dominance:</p>
+                        <p class="heading">{{ $t('statistics.btc-dominance') }}</p>
                         <p class="title">{{ bitcoin_percentage_of_market_cap | number_format | percent }}</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="heading">Cryptocurrencies:</p>
+                        <p class="heading">{{ $t('statistics.cryptocurrencies') }}</p>
                         <p class="title">{{ active_currencies | number_format }}</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="heading">Markets:</p>
+                        <p class="heading">{{ $t('statistics.markets') }}</p>
                         <p class="title tooltip is-tooltip-bottom" :data-tooltip="active_markets | number_format">
                             {{ active_markets | shortener }}
                         </p>
                     </div>
                 </div>
             </nav>
-            <app-progress v-else></app-progress>
+            <app-progress v-else />
         </div>
     </div>
 </template>

@@ -1,5 +1,6 @@
 export default {
-    locale: 'en',
+    locale: 'ru',
+    locales: ['en', 'ru'],
     isDarkTheme: false,
     coins: {
         items: [],

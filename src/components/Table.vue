@@ -2,14 +2,14 @@
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr @click="handleSort" :class="`sortable sort_by_${sortColumn} sort_direction_${sortDirection}`">
-                <th data-title="rank" class="has-text-centered"><span>Rank</span></th>
-                <th data-title="name"><span>Name</span></th>
-                <th data-title="symbol"><span>Symbol</span></th>
-                <th data-title="price_usd" class="has-text-right"><span>Price {{ selectedCurrency }}</span></th>
-                <th data-title="market_cap_usd" class="has-text-right"><span>Market Cap {{ selectedCurrency }}</span></th>
-                <th data-title="percent_change_1h" class="has-text-right"><span>1H change</span></th>
-                <th data-title="percent_change_24h" class="has-text-right"><span>24H change</span></th>
-                <th data-title="percent_change_7d" class="has-text-right"><span>7d change</span></th>
+                <th data-title="rank" class="has-text-centered"><span>{{ $t('table.rank') }}</span></th>
+                <th data-title="name"><span>{{ $t('table.name') }}</span></th>
+                <th data-title="symbol"><span>{{ $t('table.symbol') }}</span></th>
+                <th data-title="price_usd" class="has-text-right"><span>{{ $t('table.price') }} {{ selectedCurrency }}</span></th>
+                <th data-title="market_cap_usd" class="has-text-right"><span>{{ $t('table.market-cap') }} {{ selectedCurrency }}</span></th>
+                <th data-title="percent_change_1h" class="has-text-right"><span>{{ $t('table.1h-change') }}</span></th>
+                <th data-title="percent_change_24h" class="has-text-right"><span>{{ $t('table.24h-change') }}</span></th>
+                <th data-title="percent_change_7d" class="has-text-right"><span>{{ $t('table.7d-change') }}</span></th>
             </tr>
         </thead>
         <tbody>

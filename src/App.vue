@@ -59,11 +59,6 @@
     @import 'node_modules/bulma/sass/components/_all.sass';
     @import 'node_modules/bulma-extensions/extensions.sass';
 
-    .is-light {
-        // @import './assets/themes/light/variables.scss';
-        // @import './assets/themes/light/overrides.scss';
-    }
-
     .is-dark {
         @import './assets/themes/dark/variables.scss';
         @import './assets/themes/dark/overrides.scss';

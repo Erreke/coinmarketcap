@@ -13,7 +13,7 @@
                         { 'is-danger': coin['percent_change_1h'] < 0 },
                     ]">
                         <p class="title">{{ coin['percent_change_1h'] | percent }}</p>
-                        <p class="subtitle">Change 1H</p>
+                        <p class="subtitle">{{ $t('coin-page.1h-change') }}</p>
                     </article>
                 </div>
                 <div class="column">
@@ -23,7 +23,7 @@
                         { 'is-danger': coin['percent_change_24h'] < 0 },
                     ]">
                         <p class="title">{{ coin['percent_change_24h'] | percent}}</p>
-                        <p class="subtitle">Change 24H</p>
+                        <p class="subtitle">{{ $t('coin-page.24h-change') }}</p>
                     </article>
                 </div>
                 <div class="column">
@@ -33,7 +33,7 @@
                         { 'is-danger': coin['percent_change_7d'] < 0 },
                     ]">
                         <p class="title">{{ coin['percent_change_7d'] | percent }}</p>
-                        <p class="subtitle">Change 7D</p>
+                        <p class="subtitle">{{ $t('coin-page.7d-change') }}</p>
                     </article>
                 </div>
             </div>
@@ -42,13 +42,13 @@
                 <div class="column">
                     <article class="notification">
                         <p class="title">{{ coin[`price_${selectedCurrencyLower}`] | number_format }}</p>
-                        <p class="subtitle">Price ({{ selectedCurrency }})</p>
+                        <p class="subtitle">{{ $t('coin-page.price', {selectedCurrency}) }}</p>
                     </article>
                 </div>
                 <div class="column">
                     <article class="notification">
                         <p class="title">{{ coin['price_btc'] | number_format}}</p>
-                        <p class="subtitle">Price (BTC)</p>
+                        <p class="subtitle">{{ $t('coin-page.price-btc') }}</p>
                     </article>
                 </div>
             </div>
@@ -56,20 +56,26 @@
             <div class="columns">
                 <div class="column">
                     <article class="notification">
-                        <p class="title">{{ coin['available_supply'] | number_format }}</p>
-                        <p class="subtitle">Available supply ({{ coin['symbol'] }})</p>
+                        <p class="title tooltip is-tooltip-bottom" :data-tooltip="coin['available_supply'] | number_format">
+                            {{ coin['available_supply'] | shortener }}
+                        </p>
+                        <p class="subtitle">{{ $t('coin-page.available-supply', {symbol: coin['symbol']}) }}</p>
                     </article>
                 </div>
                 <div class="column">
                     <article class="notification">
-                        <p class="title">{{ coin['max_supply'] | number_format }}</p>
-                        <p class="subtitle">Max supply ({{ coin['symbol'] }})</p>
+                        <p class="title tooltip is-tooltip-bottom" :data-tooltip="coin['max_supply'] | number_format">
+                            {{ coin['max_supply'] | shortener }}
+                        </p>
+                        <p class="subtitle">{{ $t('coin-page.max-supply', { symbol: coin['symbol'] }) }}</p>
                     </article>
                 </div>
                 <div class="column">
                     <article class="notification">
-                        <p class="title">{{ coin['total_supply'] | number_format }}</p>
-                        <p class="subtitle">Total supply ({{ coin['symbol'] }})</p>
+                        <p class="title tooltip is-tooltip-bottom" :data-tooltip="coin['total_supply'] | number_format">
+                            {{ coin['total_supply'] | shortener }}
+                        </p>
+                        <p class="subtitle">{{ $t('coin-page.total-supply', { symbol: coin['symbol'] }) }}</p>
                     </article>
                 </div>
             </div>
@@ -77,26 +83,29 @@
             <div class="columns">
                 <div class="column">
                     <article class="notification">
-                        <p class="title">{{ coin[`24h_volume_${selectedCurrencyLower}`] | number_format }}</p>
-                        <p class="subtitle">24H Volume ({{ selectedCurrency }})</p>
+                        <p class="title tooltip is-tooltip-bottom" :data-tooltip="coin[`24h_volume_${selectedCurrencyLower}`] | number_format">
+                            {{ coin[`24h_volume_${selectedCurrencyLower}`] | shortener }}
+                        </p>
+                        <p class="subtitle">{{ $t('coin-page.24h-volume', { selectedCurrency }) }}</p>
                     </article>
                 </div>
                 <div class="column">
                     <article class="notification">
-                        <p class="title">{{ coin[`market_cap_${selectedCurrencyLower}`] | number_format}}</p>
-                        <p class="subtitle">Market Capitalization ({{ selectedCurrency }})</p>
+                        <p class="title tooltip is-tooltip-bottom" :data-tooltip="coin[`market_cap_${selectedCurrencyLower}`] | number_format">
+                            {{ coin[`market_cap_${selectedCurrencyLower}`] | shortener}}
+                        </p>
+                        <p class="subtitle">{{ $t('coin-page.market-cap', { selectedCurrency }) }}</p>
                     </article>
                 </div>
             </div>
 
         </div>
-        <app-progress v-else></app-progress>
+        <app-progress v-else />
     </div>
 </template>
 
 <script>
-    import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
-    import axios from 'axios';
+    import { mapState, mapActions, mapMutations } from 'vuex'
     import progress from '@/components/Progress';
 
     export default {

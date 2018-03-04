@@ -1,5 +1,5 @@
 <template>
-    <div class="navbar-item">
+    <div class="navbar-item tooltip is-tooltip-bottom" :data-tooltip="$t('night-mode')">
         <div class="field is-grouped">
             <div class="control">
                 <div class="field">

@@ -17,6 +17,7 @@
     import { mapState } from 'vuex';
 
     export default {
+        name: 'SelectorCurrency',
         data() {
             return {
                 cols: 2,

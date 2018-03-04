@@ -1,12 +1,12 @@
 <template>
     <div class="section">
         <div class="container" v-if="coinsCount">
-            <app-search></app-search>
-            <app-table></app-table>
-            <app-pagination></app-pagination>
+            <app-search />
+            <app-table />
+            <app-pagination />
         </div>
 
-        <app-progress v-else></app-progress>
+        <app-progress v-else />
     </div>
 </template>
 

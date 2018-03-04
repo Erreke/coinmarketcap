@@ -1,7 +1,7 @@
 <template>
-    <article :class="[ 'accordion', 'is-info', { 'is-active': item.isOpened } ]">
+    <article :class="[ 'accordion', 'is-info', { 'is-active': isOpened } ]">
         <div class="accordion-header toggle" @click="handleToggle">
-            <p>{{ item.q }}</p>
+            <p>{{ number }}. {{ item.q }}</p>
             <i class="icon"></i>
         </div>
         <div class="accordion-body">
@@ -12,13 +12,18 @@
 
 <script>
     export default {
+        data() {
+            return {
+                isOpened: false
+            }
+        },
         props: [
-            'index',
+            'number',
             'item',
         ],
         methods: {
             handleToggle() {
-                this.item.isOpened = !this.item.isOpened;
+                this.isOpened = !this.isOpened;
             },
         },
     }

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import MainPage from '@/pages/MainPage'
 import SpecificCoinPage from '@/pages/SpecificCoinPage'
-import ConvertorPage from '@/pages/ConvertorPage'
+import ConverterPage from '@/pages/ConverterPage'
 import FaqPage from '@/pages/FaqPage'
 import DisclaimerPage from '@/pages/DisclaimerPage'
 import TodoPage from '@/pages/TodoPage'
@@ -24,9 +24,9 @@ export default new Router({
             component: SpecificCoinPage
         },
         {
-            path: '/convertor/',
-            name: 'ConvertorPage',
-            component: ConvertorPage
+            path: '/converter/',
+            name: 'ConverterPage',
+            component: ConverterPage
         },
         {
             path: '/faq/',

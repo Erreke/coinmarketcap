@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import App from './App';
+import i18n from './i18n';
 import router from './router';
 import store from './store';
 import Worker from './worker.js';
@@ -75,11 +76,19 @@ Vue.filter('currency', function (value, curr) {
     return ['RUB', 'BTC', 'ETH'].includes(selectedCurrency) ? `${value} ${sign}` : `${sign} ${value}`;
 });
 
+
+Vue.filter('uppercase', function (value) {
+    if (!value) return value;
+
+    return value.toUpperCase();
+});
+
 Vue.prototype.$worker = new Worker();
 
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
+    i18n: i18n(store()),
     router,
     store,
     components: {App},

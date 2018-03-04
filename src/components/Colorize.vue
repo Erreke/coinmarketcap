@@ -1,6 +1,6 @@
 <template>
     <span :class="className">
-        <slot></slot>
+        <slot />
     </span>
 </template>
 

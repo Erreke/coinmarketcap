@@ -2,13 +2,18 @@
     <div :class="['dropdown', {'is-active': isOpened }]">
         <div class="dropdown-trigger">
             <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" @click="handleOpen">
-                <span>Show items: {{ paginationPerPage }}</span>
+                <span>{{ $t('limiter.show-items') }} {{ paginationPerPage }}</span>
                 <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
             </button>
         </div>
         <div class="dropdown-menu" role="menu">
             <div class="dropdown-content" @click.prevent="handleSelect">
-                <a v-for="item in items" :data-value="item.value" :class="['dropdown-item', {'is-active': item.value === paginationPerPage}]" href="#">{{ item.text }}</a>
+                <a
+                    href="#"
+                    v-for="item in items"
+                    :data-value="item"
+                    :class="['dropdown-item', {'is-active': item === paginationPerPage}]"
+                >{{ getText(item) }}</a>
             </div>
         </div>
     </div>
@@ -19,30 +24,15 @@
 
     export default {
         name: 'Limiter',
-        data() {
+        data: () => {
             return {
                 isOpened: false,
                 items: [
-                    {
-                        value: 10,
-                        text: '10'
-                    },
-                    {
-                        value: 50,
-                        text: '50'
-                    },
-                    {
-                        value: 100,
-                        text: '100'
-                    },
-                    {
-                        value: 500,
-                        text: '500'
-                    },
-                    {
-                        value: 'all',
-                        text: 'View All'
-                    },
+                    10,
+                    50,
+                    100,
+                    500,
+                    'all',
                 ],
             }
         },
@@ -67,7 +57,14 @@
 
                 this.setPaginationPerPage(parseInt(perPage));
                 this.setPaginationCurrent(1);
+            },
+            getText(value) {
+                if (value === 'all') {
+                    return this.$t('limiter.view-all');
+                } else {
+                    return value;
+                }
             }
-        }
+        },
     }
 </script>

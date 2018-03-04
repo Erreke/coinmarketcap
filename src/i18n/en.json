@@ -1,0 +1,86 @@
+{
+  "jumbotron": {
+    "title": "Cryptocurrency Market Capitalizations",
+    "subtitle": "Coinmarketcap clone built with Vue.js. It uses also vue-router, vuex, axios and bulma."
+  },
+  "last-updated": {
+    "last-updated": "Last updated: {value}",
+    "click-to-update": "Click to update"
+  },
+  "navbar": {
+    "home": "Главная",
+    "converter": "Converter",
+    "faq": "FAQ",
+    "disclaimer": "Disclaimer",
+    "todo": "Todo"
+  },
+  "night-mode": "Night Mode",
+  "loading": "Loading...",
+  "find-a-coin": "Find a coin",
+  "search": "Search",
+  "statistics": {
+    "total-market-cap": "Market Cap:",
+    "total-24h-volume": "24h Vol:",
+    "btc-dominance": "BTC Dominance:",
+    "cryptocurrencies": "Cryptocurrencies:",
+    "markets": "Markets:"
+  },
+  "table": {
+    "rank": "Rank",
+    "name": "Name",
+    "symbol": "Symbol",
+    "price": "Price",
+    "market-cap": "Market Cap",
+    "1h-change": "1H change",
+    "24h-change": "24H change",
+    "7d-change": "7d change"
+  },
+  "limiter": {
+    "show-items": "Show items:",
+    "view-all": "View All"
+  },
+  "disclaimer-page": {
+    "title-1": "No Investment Advice",
+    "title-2": "Accuracy of Information",
+    "content-1": "The information provided on this website does not constitute investment advice, financial advice, trading advice, or any other sort of advice and you should not treat any of the website's content as such. CoinMarketCap does not recommend that any cryptocurrency should be bought, sold, or held by you. Do conduct your own due diligence and consult your financial advisor before making any investment decisions.",
+    "content-2": "CoinMarketCap will strive to ensure accuracy of information listed on this website although it will not hold any responsibility for any missing or wrong information. CoinMarketCap provides all information as is. You understand that you are using any and all information available here at your own risk."
+  },
+  "faq": {
+    "q1": "What is \"Market Capitalization\" and how is it calculated?",
+    "a1": "<p>Market Capitalization is one way to rank the relative size of a cryptocurrency. It's calculated by multiplying the Price by the Circulating Supply.</p><p>Market Cap = Price X Circulating Supply.</p>",
+    "q2": "How are the prices calculated for the various cryptocurrencies?",
+    "a2": "Price is calculated by taking the volume weighted average of all prices reported at each market. Sources for the prices can be found on the markets section on each cryptocurrency page. For example, Bitcoin's markets.",
+    "q3": "What is the difference between \"Circulating Supply\", \"Total Supply\", and \"Max Supply\"?",
+    "a3": "<p>Circulating Supply is the best approximation of the number of coins that are circulating in the market and in the general public's hands.</p><p>Total Supply is the total amount of coins in existence right now (minus any coins that have been verifiably burned).</p><p>Max Supply is the best approximation of the maximum amount of coins that will ever exist in the lifetime of the cryptocurrency.</p>",
+    "q4": "Why is the Circulating Supply used in determining the market capitalization instead of Total Supply?",
+    "a4": "We've found that Circulating Supply is a much better metric for determining the market capitalization. Coins that are locked, reserved, or not able to be sold on the public market are coins that can't affect the price and thus should not be allowed to affect the market capitalization as well. The method of using the Circulating Supply is analogous to the method of using public float for determining the market capitalization of companies in traditional investing.",
+    "q5": "What is the criteria for a cryptocurrency to be listed on CoinMarketCap?",
+    "a5": "<p>The criteria for a cryptocurrency to be listed is the following:</p><ul><li>Must be a cryptocurrency or a crypto token.</li><li>Must be on a public exchange with an API that reports the last traded price and the last 24 hour trading volume.</li><li>Must have a non-zero trading volume on at least one supported exchange so a price can be determined.</li><li>For market cap ranking, an accurate circulating supply figure is required.</li></ul><p>If you'd like to have a cryptocurrency listed and it meets all of the criteria, please fill out the request form.</p>",
+    "q6": "Why are markets with no fees excluded from the price average and total trading volume?",
+    "a6": "When no fees are being charged at the exchange, it is possible for a trader (or bot) to trade back and forth with themselves and generate a lot of \"fake\" volume without penalty. It's impossible to determine how much of the volume is fake so we exclude it entirely from the calculations.",
+    "q7": "How do I purchase cryptocurrency?",
+    "a7": "CoinMarketCap reports on the trading activities of thousands of markets but does not directly sell any cryptocurrency. The best way to find where to buy is by looking on the markets section for the cryptocurrency. For example, to find where to buy Bitcoin, you can look at the markets section for Bitcoin.",
+    "q8": "In what time zone is the site based?",
+    "a8": "Data is collected, recorded, and reported in UTC time unless otherwise specified.",
+    "q9": "At what time is the 24 hour % change based?",
+    "a9": "It's based on the current time. It's a rolling 24 hour period.",
+    "q10": "Why does the supply number sometimes appear grayed out?",
+    "a10": "A grayed out supply number indicates that the data source for the supply has gone stale for at least seven days and might not be up to date.",
+    "q11": "Why are you listing [insert random cryptocurrency]? It's clearly a scam!",
+    "a11": "Nearly every crypocurrency has been called a scam at some point in its lifetime. We're not here to judge the merits of any cryptocurrency, but we provide the best tools for you to make your own conclusions. As long as it meets the listing criteria, it's eligible to be on the site.",
+    "q12": "Am I allowed to use content (screenshots, data, graphs, etc.) for one of my personal projects and/or commercial use?",
+    "a12": "Absolutely! Feel free to use any content as you see fit. We kindly ask that you cite us as a source."
+  },
+  "coin-page": {
+    "1h-change": "Change 1H",
+    "24h-change": "Change 24H",
+    "7d-change": "Change 7D",
+    "price": "Price ({selectedCurrency})",
+    "price-btc": "Price (BTC)",
+    "available-supply": "Available supply ({symbol})",
+    "max-supply": "Max supply ({symbol})",
+    "total-supply": "Total supply ({symbol})",
+    "24h-volume": "24H Volume ({selectedCurrency})",
+    "market-cap": "Market Capitalization ({selectedCurrency})"
+  }
+}

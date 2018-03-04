@@ -4,11 +4,13 @@
   color: $grey-lighter;
 }
 
-a {
+a,
+.content a {
   color: $link-color;
 }
 
-a:hover {
+a:hover,
+.content a:hover {
   color: $link-hover-color;
 }
 
@@ -271,10 +273,15 @@ a:hover {
 .navbar-dropdown {
   background-color: $grey-darkest;
 }
-.navbar-dropdown a.navbar-item:hover {
+
+a.navbar-item:hover,
+a.navbar-item.is-active,
+a.navbar-link:hover,
+a.navbar-link.is-active {
   background-color: $grey-darker;
   color: $grey-lighter;
 }
+
 .navbar.is-light .navbar-start > a.navbar-item:hover,
 .navbar.is-light .navbar-start > a.navbar-item.is-active,
 .navbar.is-light .navbar-start .navbar-link:hover,
