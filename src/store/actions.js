@@ -55,6 +55,7 @@ export default {
                         commit('ADD_COINS', response.data);
 
                     } else {
+                        commit('SET_PAGINATION_CURRENT', 1);
                         commit('SET_COINS', response.data);
 
                     }

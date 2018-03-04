@@ -6,7 +6,6 @@
                 <div class="column" v-for="col in table">
                     <a class="navbar-item" href="#" v-for="row in col" :data-value="row" @click="handleSelect">
                         <span>{{ row }}</span>
-                        <!--<i class="fas fa-spinner fa-pulse" v-if="isLoading && selectedCurrency === row"></i>-->
                     </a>
                 </div>
             </div>
@@ -35,8 +34,6 @@
         },
         methods: {
             handleSelect(e) {
-                // this.$store.dispatch('SELECT_CURRENCY', e.target.dataset.value)
-
                 this.$store.dispatch('SELECT_CURRENCY', e.target.innerText);
             },
             handleActivate() {

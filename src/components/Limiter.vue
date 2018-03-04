@@ -1,6 +1,5 @@
 <template>
     <div :class="['dropdown', {'is-active': isOpened }]">
-
         <div class="dropdown-trigger">
             <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" @click="handleOpen">
                 <span>Show items: {{ paginationPerPage }}</span>

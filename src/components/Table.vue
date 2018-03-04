@@ -95,7 +95,7 @@
     }
 </script>
 
-<style scoped>
+<style>
     .sortable th {
         cursor: pointer;
         user-select: none;
@@ -120,7 +120,7 @@
     .sort_by_percent_change_7d.sort_direction_asc th[data-title="percent_change_7d"] span::after {
         content: '';
         border-width: 8px 4px 0 4px;
-        border-color: #000 transparent transparent transparent;
+        border-color: #363636 transparent transparent transparent;
     }
     .sort_by_name.sort_direction_desc th[data-title="name"] span::after,
     .sort_by_symbol.sort_direction_desc th[data-title="symbol"] span::after,
@@ -132,6 +132,6 @@
     .sort_by_percent_change_7d.sort_direction_desc th[data-title="percent_change_7d"] span::after {
         content: '';
         border-width: 0 4px 8px 4px;
-        border-color: transparent transparent #000 transparent;
+        border-color: transparent transparent #363636 transparent;
     }
 </style>
