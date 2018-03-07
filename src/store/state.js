@@ -7,6 +7,7 @@ export default {
         pagination: {
             current: 1,
             perPage: 10,
+            isLoading: false,
         },
         sort: {
             column: 'rank',
@@ -192,4 +193,25 @@ export default {
     isLoading: false,
     isCurrencyChangeUpdating: false,
     isNeedToContinueLoading: true,
+    converter: {
+        first: {
+            amount: 0,
+            name: null,
+            symbol: null,
+            usdPrice: 0,
+            oppositePrice: 0,
+            isCalculating: false,
+            isLoading: false,
+        },
+        second: {
+            amount: 0,
+            name: null,
+            symbol: null,
+            usdPrice: 0,
+            oppositePrice: 0,
+            isCalculating: false,
+            isLoading: false,
+        },
+        isReversing: false,
+    }
 }

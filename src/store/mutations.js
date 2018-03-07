@@ -35,6 +35,10 @@ export default {
         state.coins.pagination.current = current
     },
 
+    SET_PAGINATION_LOADING (state, isLoading) {
+        state.coins.pagination.isLoading = isLoading;
+    },
+
     SET_SELECTED_CURRENCY (state, currency) {
         state.selectedCurrency = currency;
     },
@@ -53,6 +57,20 @@ export default {
 
     SET_LOCALE (state, locale) {
         state.locale = locale;
-    }
+    },
+
+    SET_CONVERTER_COIN (state, payload) {
+        state.converter[payload.type].name = payload.data.name;
+        state.converter[payload.type].symbol = payload.data.symbol;
+        state.converter[payload.type].usdPrice = payload.data.price_usd;
+    },
+
+    SET_CONVERTER_AMOUNT (state, payload) {
+        state.converter[payload.type].amount = payload.amount;
+    },
+
+    SET_CONVERTER_OPPOSITE_PRICE (state, payload) {
+        state.converter[payload.type].oppositePrice = payload.price;
+    },
 
 }

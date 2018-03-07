@@ -30,6 +30,9 @@ export default {
     paginationPerPage(state) {
         return state.coins.pagination.perPage
     },
+    paginationIsLoading(state) {
+        return state.coins.pagination.isLoading
+    },
     sortColumn(state) {
         return state.coins.sort.column
     },

@@ -44,6 +44,7 @@
         },
         methods: {
             ...mapMutations({
+                setPaginationLoading: 'SET_PAGINATION_LOADING',
                 setPaginationPerPage: 'SET_PAGINATION_PER_PAGE',
                 setPaginationCurrent: 'SET_PAGINATION_CURRENT',
             }),
@@ -51,12 +52,14 @@
                 this.isOpened = !this.isOpened
             },
             handleSelect(e) {
+                this.setPaginationLoading(true);
                 this.isOpened = false;
 
                 const perPage = e.target.dataset.value === 'all' ? this.coinsCount : e.target.dataset.value;
 
                 this.setPaginationPerPage(parseInt(perPage));
                 this.setPaginationCurrent(1);
+                this.setPaginationLoading(false);
             },
             getText(value) {
                 if (value === 'all') {

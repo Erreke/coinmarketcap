@@ -7,7 +7,10 @@
             <li v-for="page in pages">
                 <span class="pagination-ellipsis" v-if="page.ellipse">&hellip;</span>
                 <a :class="['pagination-link', { 'is-current': page.current }]" href="#"
-                   @click.prevent="handleClickToPage" v-else>{{ page.value }}</a>
+                   @click.prevent="handleClickToPage" v-else>
+                    {{ page.value }}
+                    <span v-if="isLoading">LOADING...</span>
+                </a>
             </li>
         </ul>
     </nav>
@@ -24,6 +27,7 @@
         },
         computed: {
             ...mapGetters({
+                isLoading: 'paginationIsLoading',
                 current: 'paginationCurrent',
                 perPage: 'paginationPerPage',
                 count: 'coinsCount',
@@ -157,12 +161,15 @@
         },
         methods: {
             ...mapMutations({
+                setPaginationLoading: 'SET_PAGINATION_LOADING',
                 setPaginationCurrent: 'SET_PAGINATION_CURRENT'
             }),
             handleClickToPage(e) {
                 const page = e.target.text;
 
+                this.setPaginationLoading(true);
                 this.setPaginationCurrent(parseInt(page));
+                this.setPaginationLoading(false);
             },
         }
     }

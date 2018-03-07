@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+function getCoin(coin) {
+    return axios.get(`https://api.coinmarketcap.com/v1/ticker/${coin}/`);
+}
+
 export default {
     FETCH_ALL({dispatch, commit}, isForceUpdate = false) {
         dispatch('FETCH_GLOBAL', {isForceUpdate});
@@ -94,5 +98,52 @@ export default {
     SELECT_CURRENCY({commit, dispatch}, currency) {
         commit('SET_SELECTED_CURRENCY', currency);
         dispatch('FETCH_ALL', true);
-    }
+    },
+
+    CONVERT({dispatch, commit, state}, payload) {
+        axios.all([getCoin(payload.first), getCoin(payload.second)])
+            .then(axios.spread((first, second) => {
+
+                commit('SET_CONVERTER_COIN', {
+                    type: 'first',
+                    data: first.data[0],
+                });
+
+                commit('SET_CONVERTER_COIN', {
+                    type: 'second',
+                    data: second.data[0],
+                });
+            }))
+            .then(() => {
+                commit('SET_CONVERTER_AMOUNT', {
+                    type: 'first',
+                    amount: 1,
+                });
+
+                const first = state.converter.first;
+                const second = state.converter.second;
+
+                const secondAmount = first.usdPrice / second.usdPrice * first.amount;
+
+                const firstOppositePrice = second.usdPrice / first.usdPrice;
+                const secondOppositePrice = first.usdPrice / second.usdPrice;
+
+
+                commit('SET_CONVERTER_AMOUNT', {
+                    type: 'second',
+                    amount: secondAmount.toFixed(6),
+                });
+
+                commit('SET_CONVERTER_OPPOSITE_PRICE', {
+                    type: 'first',
+                    price: firstOppositePrice.toFixed(6),
+                });
+
+                commit('SET_CONVERTER_OPPOSITE_PRICE', {
+                    type: 'second',
+                    price: secondOppositePrice.toFixed(6),
+                });
+            });
+
+    },
 }

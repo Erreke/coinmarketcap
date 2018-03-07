@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex';
+    import { mapGetters } from 'vuex';
 
     import pagination from '@/components/Pagination';
     import progress from '@/components/Progress';
